@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\V1;
+namespace App\Helpers\Http\Controllers\V1;
 
 use App\Contracts\ProductsInterface;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Product\CreateProductRequest;
+use App\Helpers\Http\Controllers\Controller;
+use App\Helpers\Http\Requests\Product\CreateProductRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class ProductsController extends Controller
 {
     /**
      * @param ProductsInterface $productRepository
@@ -31,8 +31,8 @@ class ProductController extends Controller
     public function getSingleProduct(Request $request): JsonResponse
     {
         $product = $this->productRepository->getSingleProduct($request->product_id);
-        return response()->json($product,
-            !empty($product) ? 200: 400
+        return response()->json(!empty($product) ? $product : ['message' => 'Product not found.'],
+            !empty($product) ? 200: 404
         );
     }
 
@@ -51,9 +51,7 @@ class ProductController extends Controller
      */
     public function deleteAProduct(Request $request): JsonResponse
     {
-        $product = empty($this->productRepository->deleteAProduct($request->product_id)) ?
-        [] : 'product deleted';
-        return response()->json($product, empty($product)? 204 : 200);
+        return response()->json( $this->productRepository->deleteAProduct($request->product_id), 204 );
     }
 
 }
