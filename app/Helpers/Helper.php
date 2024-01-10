@@ -15,4 +15,13 @@ class Helper
         return Carbon::now();
     }
 
+    /**
+     * @param string $productName
+     * @return string
+     */
+    public static function productNameFormatter(string $productName): string
+    {
+        return ucwords($productName);
+    }
+
 }

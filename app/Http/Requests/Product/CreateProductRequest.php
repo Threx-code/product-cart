@@ -26,7 +26,7 @@ class CreateProductRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:100'],
-            'price' => ['required', 'integer', 'max:11'],
+            'price' => ['required', 'integer'],
         ];
     }
 }

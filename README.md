@@ -10,7 +10,7 @@ This application requires PHP ^8.1
 - docker compose build
 - docker compose ps -a (To see the list of containers started) 
 - docker compose up -d
-- docker exec -it WPC_php /bin/sh
+- docker exec -it productCart /bin/sh
 - Create your database
 - Copy .env.example and rename it to .env
 - Add the database configuration to the .env file
