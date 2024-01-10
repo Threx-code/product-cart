@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Product;
+namespace App\Helpers\Http\Requests\Cart;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class CreateProductRequest extends FormRequest
+class CreateCartRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,8 +24,6 @@ class CreateProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'string', 'max:100'],
-            'price' => ['required', 'integer'],
         ];
     }
 }

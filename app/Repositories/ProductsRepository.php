@@ -4,7 +4,6 @@ namespace App\Repositories;
 
 use App\Contracts\ProductsInterface;
 use App\Helpers\Helper;
-use App\Http\Requests\Product\CreateProductRequest;
 use App\Models\Product;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -24,7 +23,7 @@ class ProductsRepository implements ProductsInterface
      */
     public function getSingleProduct(int $productId): mixed
     {
-        return Product::where('id', $productId)->get();
+        return Product::where('id', $productId)->first();
     }
 
     /**
