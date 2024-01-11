@@ -5,6 +5,7 @@ namespace App\Helpers\Http\Controllers\V1;
 use App\Contracts\CartsInterface;
 use App\Helpers\Http\Controllers\Controller;
 use App\Helpers\Http\Requests\Cart\CreateCartRequest;
+use App\Helpers\Http\Requests\Cart\UpdateCartrequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -70,13 +71,15 @@ class CartsController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param UpdateCartrequest $request
      * @return JsonResponse
      */
-    public function removedFromCarts(Request $request): JsonResponse
+    public function removedFromCarts(UpdateCartrequest $request): JsonResponse
     {
-        return response()->json(!empty($this->cartRepository->removedFromCarts($request->user_id, $request->cart_id)) ?
-        ["status" => "Product removed from cart"] : ["Status" => "Unable to remove from cart"], 200);
+        $data = $this->cartRepository->removedFromCarts($request->user_id, $request->cart_id);
+
+        return response()->json(!empty($data) ? ["status" => "Product removed from cart"] : ["Status" => "Unable to remove from cart"],
+            !empty($data) ? 200 : 404);
     }
 
 }
