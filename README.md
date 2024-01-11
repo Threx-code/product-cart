@@ -3,6 +3,8 @@
 Product-Cart APIs
 This application requires PHP ^8.1
 
+IF you have Docker follow the setup below, or clone the repository and run it the best way you could locally
+
 ## Installation RUN the commands below in the terminal (Docker is required)
 - cd ~/path/to/the/directory/where/you/download/the/project
 - cp .env.example .env
