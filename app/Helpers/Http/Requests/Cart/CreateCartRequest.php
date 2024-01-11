@@ -3,6 +3,7 @@
 namespace App\Helpers\Http\Requests\Cart;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class CreateCartRequest extends FormRequest
 {
@@ -24,6 +25,9 @@ class CreateCartRequest extends FormRequest
     public function rules()
     {
         return [
+            'user_id' => ['required', Rule::exists('users', 'id')],
+            'product_id' => ['required', Rule::exists('products', 'id')],
+            'quantity' => ['required', 'integer']
         ];
     }
 }

@@ -23,4 +23,12 @@ class User extends Authenticatable
         'remember_token',
         'email_verified_at'
     ];
+
+    /**
+     * @return HasMany
+     */
+    public function carts(): HasMany
+    {
+        return $this->hasMany(Cart::class, 'user_id', 'id');
+    }
 }
